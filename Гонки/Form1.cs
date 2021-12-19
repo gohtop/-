@@ -16,5 +16,17 @@ namespace Гонки
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (Form2 form = new Form2())
+            {
+                form.ShowDialog();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
