@@ -35,12 +35,12 @@ namespace Гонки
         {
             timeSpeed  = 100;
             gameSpeed = 2;
-            carTurnSpeed = 15;
+            carTurnSpeed = 35;
             isGameOver = false;
 
             roadlines = new PictureBox[] { pbBoundLeft, pbBountRight, pbRoadLine1, pbRoadLine2, pbRoadLine3 };
             enemys = new PictureBox[] { Enemy1, Enemy2, Enemy3, Enemy4, Enemy5 };
-            coins = new PictureBox[] { Coin1, Coin2, Coin4, Coin5, Coin6, Coin7, Coin8, Coin9 };
+            coins = new PictureBox[] { Coin1, Coin2, Coin4, Coin5, Coin6};
             random = new Random();
             collectedcoins = 0;
 
@@ -115,6 +115,54 @@ namespace Гонки
                 }
             }
         }
+        void is_get_coins()
+        {
+            int x; 
+            for (int i = 0; i < coins.Length; i++) 
+            {
+                if (Car.Bounds.IntersectsWith(coins[i].Bounds))
+                {
+
+                    collectedcoins++;
+                    x = random.Next(pbBoundLeft.Right, pbBountRight.Left - coins[i].Width);
+                    coins[i].Location = new Point(x, -coins[i].Width);
+                }
+            }
+            lblCoins.Text = "Coins = " + collectedcoins; 
+        }
+
+        void gameover_actions()
+        {
+            GameTimer.Stop();
+            lblGameOver.Visible = true;
+            Car.Image = Properties.Resources.Boom;
+
+            DialogResult result = MessageBox.Show(
+                    "Хочешь сыграть ещё раз?",
+                    "Ты проиграл :(",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                init_game();
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+        bool Check_intersections()
+        {
+            for (int i = 0; i < enemys.Length; i++)
+            {
+                if (Car.Bounds.IntersectsWith(enemys[i].Bounds))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
@@ -136,6 +184,52 @@ namespace Гонки
             move_enemys();
             move_coins();
             move_enemys();
+            is_get_coins();
+            isGameOver = Check_intersections();
+            if (isGameOver)
+            {
+                gameover_actions();
+            }
+        }
+
+        private void Enemy3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!isGameOver)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Left:
+                        if (Car.Left > pbBoundLeft.Right)
+                        {
+                            Car.Left -= carTurnSpeed;
+                        }
+                        break;
+                    case Keys.Right:
+                        if (Car.Right < pbBountRight.Left)
+                        {
+                            Car.Left += carTurnSpeed;
+                        }
+                        break;
+
+                    case Keys.Up:
+                        if ( gameSpeed < 21)
+                        {
+                            gameSpeed++;
+                        }
+                        break;
+                    case Keys.Down:
+                        if (gameSpeed > 4)
+                        {
+                            gameSpeed--;
+                        }
+                        break;
+                }
+            }
         }
     }
 }

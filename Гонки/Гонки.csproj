@@ -123,10 +123,10 @@
     <None Include="Resources\13.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\car-vehicle-2015-Bentley-netcarshow-netcar-car-images-car-photo-Continental-GTC-V8-automotive-design-automotive-exterior-automobile-make-model-car-luxury-vehicle-bumper-378866.jpg" />
+    <None Include="Resources\10_Ruble_coin_Thumbnail_0000.jpgbe0d056e-5ecc-4e02-bc31-01ae03c1c725Zoom-removebg-preview.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\10_Ruble_coin_Thumbnail_0000.jpgbe0d056e-5ecc-4e02-bc31-01ae03c1c725Zoom-removebg-preview.png" />
+    <None Include="Resources\car-vehicle-2015-Bentley-netcarshow-netcar-car-images-car-photo-Continental-GTC-V8-automotive-design-automotive-exterior-automobile-make-model-car-luxury-vehicle-bumper-378866-removebg-preview %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

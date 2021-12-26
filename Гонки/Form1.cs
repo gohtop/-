@@ -22,6 +22,7 @@ namespace Гонки
             using (Form2 form = new Form2())
             {
                 form.ShowDialog();
+                Close();
             }
         }
 
